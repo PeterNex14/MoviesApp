@@ -41,48 +41,18 @@ import com.example.developerkakigatal.data.DummyMovie
 import com.example.developerkakigatal.model.Movie
 import com.example.developerkakigatal.presentation.ui.MovieHomeDetailScreen.components.DetailMovieContent
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     moviesId: Int?
 ) {
-
         val newMovieList = DummyMovie.MoviesData.filter { movie ->
             movie.id == moviesId
         }
         DetailMovieContent(newMovieList = newMovieList, navController = navController)
-
-
-
-
-
-
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar(
-    navController: NavHostController,
-    canNavigateBack : Boolean,
-    navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    TopAppBar(
-        title = { Text(text = "Detail Screen") },
-        navigationIcon = {
-            if(canNavigateBack) {
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null
-                    )
-                }
-            }
-        }
-    )
-}
-
 
 
 

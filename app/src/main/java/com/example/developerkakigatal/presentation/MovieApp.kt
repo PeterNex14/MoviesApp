@@ -6,6 +6,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -14,6 +15,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -33,9 +35,9 @@ import com.example.developerkakigatal.R
 import com.example.developerkakigatal.data.DummyMovie
 import com.example.developerkakigatal.navigation.NavigationItem
 import com.example.developerkakigatal.navigation.Screen
+import com.example.developerkakigatal.presentation.ui.AboutScreen.AboutScreen
 import com.example.developerkakigatal.presentation.ui.MovieBookmarkScreen.BookmarkScreen
 import com.example.developerkakigatal.presentation.ui.MovieHomeDetailScreen.DetailScreen
-import com.example.developerkakigatal.presentation.ui.MovieHomeDetailScreen.TopBar
 import com.example.developerkakigatal.presentation.ui.MovieHomeScreen.MovieHomeScreen
 
 @Composable
@@ -44,11 +46,6 @@ fun MoviesApp(
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
-        topBar = { TopBar(
-            navController = navController,
-            canNavigateBack = navController.previousBackStackEntry != null,
-            navigateUp = { navController.navigateUp() }
-        ) },
         bottomBar = {
             BottomBar(navController = navController)
         }
@@ -72,10 +69,10 @@ fun MoviesApp(
                 )
             }
             composable(Screen.Bookmark.route) {
-                BookmarkScreen()
+                BookmarkScreen(navController)
             }
             composable(Screen.About.route) {
-                
+                AboutScreen()
             }
         }
     }

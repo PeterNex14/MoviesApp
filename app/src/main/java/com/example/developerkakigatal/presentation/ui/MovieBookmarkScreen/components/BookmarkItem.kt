@@ -17,22 +17,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.developerkakigatal.R
+import com.example.developerkakigatal.model.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookmarkItem(
-    modifier: Modifier = Modifier,
+    movie: Movie,
+    onItemClicked: (Int) -> Unit,
 ) {
-    ElevatedCard(onClick = { /*TODO*/ }, modifier = Modifier.size(width = 180.dp, height = 260.dp)) {
+    ElevatedCard(onClick = { onItemClicked(movie.id) }, modifier = Modifier.size(width = 180.dp, height = 260.dp)) {
         Box(
 
         ) {
             Image(
-                painter = painterResource(id = R.drawable.wandavision),
-                contentDescription = stringResource(id = R.string.title_wandavision),
+                painter = painterResource(id = movie.image),
+                contentDescription = stringResource(id = movie.title),
                 contentScale = ContentScale.FillWidth
 
             )
@@ -46,8 +46,3 @@ fun BookmarkItem(
     }
 }
 
-@Preview
-@Composable
-fun BookmarkItemPreview() {
-    BookmarkItem()
-}
