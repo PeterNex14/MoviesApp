@@ -25,12 +25,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.developerkakigatal.R
 import com.example.developerkakigatal.model.Movie
 
 @Composable
 fun DetailMovieContent(
-    newMovieList: List<Movie>
+    navController: NavController,
+    newMovieList: List<Movie>,
+    modifier: Modifier = Modifier
 ) {
     Column {
         Box(modifier = Modifier

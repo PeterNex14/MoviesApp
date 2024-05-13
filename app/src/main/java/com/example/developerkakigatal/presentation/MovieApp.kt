@@ -2,10 +2,13 @@ package com.example.developerkakigatal.presentation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -14,6 +17,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 
@@ -31,6 +35,7 @@ import com.example.developerkakigatal.navigation.NavigationItem
 import com.example.developerkakigatal.navigation.Screen
 import com.example.developerkakigatal.presentation.ui.MovieBookmarkScreen.BookmarkScreen
 import com.example.developerkakigatal.presentation.ui.MovieHomeDetailScreen.DetailScreen
+import com.example.developerkakigatal.presentation.ui.MovieHomeDetailScreen.TopBar
 import com.example.developerkakigatal.presentation.ui.MovieHomeScreen.MovieHomeScreen
 
 @Composable
@@ -39,7 +44,11 @@ fun MoviesApp(
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
-        
+        topBar = { TopBar(
+            navController = navController,
+            canNavigateBack = navController.previousBackStackEntry != null,
+            navigateUp = { navController.navigateUp() }
+        ) },
         bottomBar = {
             BottomBar(navController = navController)
         }
@@ -58,7 +67,8 @@ fun MoviesApp(
             ) {navBackStackEntry ->
                 DetailScreen(
                     navController = navController,
-                    moviesId = navBackStackEntry.arguments?.getInt("movieId")
+                    moviesId = navBackStackEntry.arguments?.getInt("movieId"),
+
                 )
             }
             composable(Screen.Bookmark.route) {
@@ -71,13 +81,7 @@ fun MoviesApp(
     }
 }
 
-@Composable
-fun TopBar(
-    navController: NavHostController,
-    modifier: Modifier = Modifier
-) {
 
-}
 
 
 @Composable
